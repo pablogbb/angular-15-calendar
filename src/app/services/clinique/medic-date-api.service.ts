@@ -7,7 +7,7 @@ import { MedicDate } from 'src/app/interfaces/IMedicDate';
   providedIn: 'root',
 })
 export class MedicDateAPIService {
-  private url_api = 'http://localhost:5170/api/MedicDate';
+  private url_api = 'https://localhost:44311/api/MedicDate';
 
   constructor(private http: HttpClient) {}
 

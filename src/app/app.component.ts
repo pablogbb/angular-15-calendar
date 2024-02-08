@@ -26,6 +26,7 @@ import {
 import { EventColor } from 'calendar-utils';
 import { MedicDateComponent } from './components/medic-date/medic-date.component';
 import { MedicDate } from './interfaces/IMedicDate';
+import { MedicDateAPIService } from './services/clinique/medic-date-api.service';
 
 const colors: Record<string, EventColor> = {
   red: {
@@ -132,7 +133,27 @@ export class AppComponent {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) {}
+
+  constructor(private modal: NgbModal, private medicDateService: MedicDateAPIService) {}
+
+  getDates(){
+    this.medicDateService.getRequest().subscribe((d:any) => {
+      this.events = [
+        ...this.events,
+        {
+          title: d.Patient,
+          start: startOfDay(d.Date),
+          end: endOfDay(new Date()),
+          color: colors['red'],
+          draggable: true,
+          resizable: {
+            beforeStart: true,
+            afterEnd: true,
+          },
+        },
+      ];
+    })
+  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
