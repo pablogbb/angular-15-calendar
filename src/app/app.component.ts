@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ViewChild,
   TemplateRef,
+  Input,
 } from '@angular/core';
 import {
   startOfDay,
@@ -23,6 +24,8 @@ import {
   CalendarView,
 } from 'angular-calendar';
 import { EventColor } from 'calendar-utils';
+import { MedicDateComponent } from './components/medic-date/medic-date.component';
+import { MedicDate } from './interfaces/IMedicDate';
 
 const colors: Record<string, EventColor> = {
   red: {
@@ -43,9 +46,16 @@ const colors: Record<string, EventColor> = {
   selector: 'app-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  //!----------------Para mostrar en el calendario-----------------------
+
+  @Input() medic_dates: MedicDate[] = [];
+  MedicD_CalenerE = [];
+  private MeiclDateMapperToCalendarEvent(): void {}
+
+  //!---------------------------------------------------------------------
   @ViewChild('modalContent', { static: true }) modalContent!: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;

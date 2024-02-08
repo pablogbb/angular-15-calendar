@@ -10,14 +10,18 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule }  from '@angular/common/http';
+import { MedicDateComponent } from './components/medic-date/medic-date.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MedicDateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
     NgbModule,
     CommonModule,
